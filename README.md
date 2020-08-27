@@ -3,7 +3,7 @@
 URL shortener for my projects.
 Made with Node.JS
 
-(Click here)[https://ege.works] to try it out.
+[Click here](https://ege.works) to try it out.
 
 ## Dependencies
  - **express** (Backend)
