@@ -1,11 +1,12 @@
 const express = require('express');
-const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const yup = require('yup');
 const monk = require('monk');
 const { nanoid } = require('nanoid');
 const enforce = require('express-sslify');
+const slowDown = require('express-slow-down');
+const rateLimit = require('express-rate-limit');
 const favicon = require('serve-favicon');
 const path = require('path');
 
@@ -24,8 +25,7 @@ urls.createIndex({ slug: 1 }, { unique: true });
 
 const app = express()
     .use(helmet())
-    .use(morgan('tiny'))
-    .use(cors())
+    .use(morgan('common'))
     .use(express.json())
     .use(express.static('./public'))
     .use(enforce.HTTPS({ trustProtoHeader: true }))
@@ -49,8 +49,18 @@ const schema = yup.object().shape({
     url: yup.string().trim().url().required(),
 });
 
-app.post('/url', async (req, res, next) => {
+app.post('/url', slowDown({
+        windowMs: 30 * 1000,
+        delayAfter: 1,
+        delayMs: 500,
+    }), rateLimit({
+        windowMs: 30 * 1000,
+        max: 1,
+    }), async (req, res, next) => {
     let { slug, url } = req.body;
+    if (url.includes('ege.works')) {
+        throw new Error('You cannot redirect to here.');
+    }
     try {
         await schema.validate({
             slug,
@@ -86,6 +96,14 @@ app.use((error, req, res, next) => {
         stack: process.env.NODE_ENV === 'production' ? 'Production' : error.stack,
     });
 });
+
+app.use((error, res, req, next) => {
+    if (error instanceof NotFound) {
+        res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+    } else {
+        next(error);
+    }
+})
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
