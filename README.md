@@ -9,3 +9,8 @@ Made with Node.JS
  - **dotenv** (Storing environment variables on local machines)
  - **express-sslify** (Forcing HTTPS connection)
  - **helmet** (Header security)
+ - **monk** (Talking to MongoDB)
+ - **morgan** (Simple logging)
+ - **nanoid** (Generating slug)
+ - **nodemon** (Dev dependency)
+ - **yup** (Schema handling)
