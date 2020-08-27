@@ -5,10 +5,11 @@ const helmet = require('helmet');
 const yup = require('yup');
 const monk = require('monk');
 const { nanoid } = require('nanoid');
+const enforce = require('express-sslify');
 
 require('dotenv').config();
 
-const db = monk(process.env.MONGO_URI);
+const db = monk(process.env.MONGODB_URI);
 
 db.then(() =>{
     console.log('MongoDB connection success!');
@@ -24,7 +25,8 @@ const app = express()
     .use(morgan('tiny'))
     .use(cors())
     .use(express.json())
-    .use(express.static('./public'));
+    .use(express.static('./public'))
+    .use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.get('/:id', async (req, res) => {
     const { id: slug } = req.params;
