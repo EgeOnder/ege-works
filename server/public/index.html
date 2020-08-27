@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://ez-css.now.sh">
+</head>
+<body>
+    <header>
+        <h1>Shorten URL</h1>
+    </header>
+    <main id="app">
+        <form @submit.prevent="createUrl()">
+            <label for="url">Bağlantı</label>
+            <input type="text" name="url" id="url" v-model="url">
+            <label for="slug">Slug</label>
+            <input type="text" name="urslugl" id="slug" v-model="slug">
+            <button type="submit">Create</button>
+        </form>
+        <pre v-if="created">
+            {{JSON.stringify(created, null, 2)}}
+        </pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
