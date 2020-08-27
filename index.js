@@ -6,6 +6,8 @@ const yup = require('yup');
 const monk = require('monk');
 const { nanoid } = require('nanoid');
 const enforce = require('express-sslify');
+const favicon = require('serve-favicon');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -26,7 +28,8 @@ const app = express()
     .use(cors())
     .use(express.json())
     .use(express.static('./public'))
-    .use(enforce.HTTPS({ trustProtoHeader: true }));
+    .use(enforce.HTTPS({ trustProtoHeader: true }))
+    .use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.get('/:id', async (req, res) => {
     const { id: slug } = req.params;
