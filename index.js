@@ -8,7 +8,7 @@ const { nanoid } = require('nanoid');
 
 require('dotenv').config();
 
-const db = monk(process.env.MONGODB_URI);
+const db = monk(process.env.MONGO_URI);
 
 db.then(() =>{
     console.log('MongoDB connection success!');
