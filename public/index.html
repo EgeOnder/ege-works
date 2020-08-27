@@ -10,13 +10,11 @@
     <script src="https://kit.fontawesome.com/5d5ed02e71.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
+    <div class="container child">
+        <header>
             <h1>☕ Ege Works</h1>
-        </div>
-    </header>
-    <main id="app">
-        <div class="container">
+        </header>
+        <main id="app">
             <form @submit.prevent="createUrl()">
                 <div class="form-group">
                     <label for="url">Link</label>
@@ -27,15 +25,16 @@
             <pre v-if="created">
                 {{JSON.stringify(created, null, 2)}}
             </pre>
-        </div>
-    </main>
-    <footer class="page-footer font-small">
-        <div class="footer-copyright text-center py-3">
-            <span>© 2020 Copyright</span> <a href="https://ege.works/">ege.works</a>
-            <br><br>
-            <a href="https://github.com/EgeOnder/ege-works" class="p-1" target="_blank"><i class="fab fa-github"></i></a> <a href="https://twitter.com/EgeOnder23" class="p-1" target="_blank"><i class="fab fa-twitter"></i></a> <a href="https://egeonder.me/" class="p-1" target="_blank"><i class="fas fa-globe-europe"></i></a>
-        </div>
-    </footer>
+        </main>
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">
+                <span>© 2020 Copyright</span> <a href="https://ege.works/">ege.works</a>
+                <br><br>
+                <a href="https://github.com/EgeOnder/ege-works" class="p-1" target="_blank"><i class="fab fa-github"></i></a> <a href="https://twitter.com/EgeOnder23" class="p-1" target="_blank"><i class="fab fa-twitter"></i></a> <a href="https://egeonder.me/" class="p-1" target="_blank"><i class="fas fa-globe-europe"></i></a>
+            </div>
+        </footer>
+    </div>
+
     <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
     <script src="app.js"></script>
 </body>
