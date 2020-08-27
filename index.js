@@ -38,9 +38,9 @@ app.get('/:id', async (req, res) => {
         if (url) {
             res.redirect(url.url);
         }
-        return res.status(404).sendFile(notFoundPath);
+        return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
     } catch (error) {
-        return res.status(404).sendFile(notFoundPath);
+        return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
     }
 });
 
