@@ -34,7 +34,7 @@ header h1 {
     text-align: center;
 }
 
-label, h1, p, span, button, a {
+label, h1, p, span, button, a, h2 {
     color: #d4d4d4;
 }
 
