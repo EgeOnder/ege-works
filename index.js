@@ -38,9 +38,9 @@ app.get('/:id', async (req, res) => {
         if (url) {
             res.redirect(url.url);
         }
-        res.redirect(`/?error=${slug} bulunamadı`);
+        return res.status(404).sendFile(notFoundPath);
     } catch (error) {
-        res.redirect('/?error=Bağlantı bulunamadı');
+        return res.status(404).sendFile(notFoundPath);
     }
 });
 
@@ -71,7 +71,7 @@ app.post('/url', slowDown({
         } 
         else {
             const existing = await urls.findOne({ slug });
-            if(existing) throw new Error('URL kullanılıyor.');
+            if(existing) throw new Error('URL already in use.');
         }
         slug = slug.toLowerCase();
         const newUrl = {
