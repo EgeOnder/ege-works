@@ -114,8 +114,16 @@ footer {
 
 .input-field {
     background-color: #00ff00;
+    color: black;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: bolder;
 }
 
 .input-field:focus {
     background-color: #00ff00;
+    color: black;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: bolder;
 }

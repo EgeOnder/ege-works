@@ -12,24 +12,26 @@
 <body>
     <div class="container child">
         <header>
-            <h1>☕ Ege Works</h1>
+            <h1>< ege.works ></h1>
         </header>
         <main id="app">
             <form @submit.prevent="createUrl()">
-                <div v-if="error" class="alert alert-danger">
+                <br><br>
+                <div v-if="error" class="created">
                     {{error}}
                 </div>
+                <br><br>
                 <div class="form-group">
                     <label for="url">Link</label>
                     <input type="text" name="url" id="url" v-model="url" class="form-control input-field" required />
                 </div>
                 <button type="submit" class="button1">Create</button>
             </form>
-            <br>
+            <br><br>
             <div v-if="created">
-                <p class="created">Short URL created: <a :href="created">{{created}}</a></p>
+                <p class="created">Short URL created: (<a :href="created">{{created}}</a>)</p>
             </div>
-            <br>
+            <br><br>
         </main>
         <footer class="page-footer font-small">
             <div class="footer-copyright text-center py-3">
