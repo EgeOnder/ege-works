@@ -17,7 +17,7 @@
 body {
     height: 100%;
     font-family: 'Anonymous Pro', monospace;
-    background-color: #75726b;
+    background-color: black;
 }
 
 .child {
@@ -29,13 +29,13 @@ body {
 }
 
 header h1 {
-    color: #d4d4d4;
+    color: #00ff00;
     margin: 1rem;
     text-align: center;
 }
 
 label, h1, p, span, button, a, h2 {
-    color: #d4d4d4;
+    color: #00ff00;
 }
 
 a:hover {
@@ -51,20 +51,21 @@ footer {
 .button1 {
     display: inline-block;
     padding: 0.35em 1.2em;
-    border: 0.1em solid #6e6e6e;
+    border: 0.1em solid #00ff00;
     margin: 0 0.3em 0.3em 0;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
     font-weight: 300;
-    color: #000000;
+    color: black;
+    background-color: #00ff00;
     text-align: center;
     transition: all 0.2s;
 }
 
 .button1:hover{
-    color: #ffffff;
-    background-color: #6e6e6e;
+    color: black;
+    background-color: white;
 }
 
 @media all and (max-width: 30em){
@@ -73,9 +74,47 @@ footer {
         margin: 0.4em auto;
         color: #000000;
         text-align: center;
-        border-radius: 0.12em;
-        box-sizing: border-box;
         text-decoration: none;
         font-weight: 300;
     }
+}
+
+.created {
+    color: #00ff00;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: type 4s steps(50, end), caret-blink .8s ease infinite;
+    border-right: 10px solid #00ff00;
+}
+
+@keyframes type {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes caret-blink {
+    0% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #00ff00;
+    }
+
+    100% {
+        border-color: transparent;
+    }
+}
+
+.input-field {
+    background-color: #00ff00;
+}
+
+.input-field:focus {
+    background-color: #00ff00;
 }

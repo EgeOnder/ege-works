@@ -31,6 +31,14 @@ const app = express()
     .use(enforce.HTTPS({ trustProtoHeader: true }))
     .use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+if(process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https')
+            res.redirect(`https://${req.header('host')}${req.url}`)
+        else next()
+    });
+}
+
 app.get('/:id', async (req, res) => {
     const { id: slug } = req.params;
     try {
@@ -60,6 +68,8 @@ app.post('/url', slowDown({
     let { slug, url } = req.body;
     if (url.includes('ege.works')) {
         throw new Error('You cannot redirect to here.');
+    } else if (url.includes('<') || url.includes('>')) {
+        throw new Error('XSS is not allowed.');
     }
     try {
         await schema.validate({
