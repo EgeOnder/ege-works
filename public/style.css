@@ -85,6 +85,7 @@ footer {
     overflow: hidden;
     animation: type 4s steps(50, end), caret-blink .8s ease infinite;
     border-right: 10px solid #00ff00;
+    max-width: min-content;
 }
 
 @keyframes type {
